@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from store.views import FrontendAppView  # 👈 import your React view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('store.urls')),
+    path('', FrontendAppView.as_view(), name='home'),  # 👈 fallback to serve React
 ]

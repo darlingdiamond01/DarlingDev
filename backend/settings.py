@@ -129,6 +129,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True
 
 import os
-from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+# Point to the static build
+TEMPLATES[0]['DIRS'] = [BASE_DIR / 'static' / 'frontend']
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static' / 'frontend' / 'static',
+]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles'
