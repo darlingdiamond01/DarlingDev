@@ -39,6 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
+    'django_filters',
+    'accounts',
+    'orders',
+    'cart',
     'store',
 ]
 
@@ -133,8 +138,21 @@ import os
 # Point to the static build
 TEMPLATES[0]['DIRS'] = [BASE_DIR / 'static' / 'frontend']
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static' / 'frontend' / 'static',
-]
+#STATICFILES_DIRS = [
+    #BASE_DIR / 'static' / 'frontend' / 'static',
+#]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# ... your existing settings above ...
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+}
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+AUTH_USER_MODEL = 'accounts.User'
